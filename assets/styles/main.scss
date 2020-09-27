@@ -1,0 +1,104 @@
+//-------------- COLORS
+$--color--gold: #c79c62;
+
+// ------------- FONTS
+@font-face {
+  font-family: "McQueenDisplay";
+  src: url("~@/assets/fonts/McQueenDisplay-BoldWeb.woff") format("woff"),
+    url("~@/assets/fonts/McQueenDisplay-BoldWeb.woff2") format("woff2");
+  weight: 800;
+}
+
+@font-face {
+  font-family: "McQueenText";
+  src: url("~@/assets/fonts/McQueenTextGX.ttf");
+}
+
+@font-face {
+  font-family: "McQueenItalic";
+  src: url("~@/assets/fonts/McQueen_text_italic.ttf");
+}
+
+
+// ------------- STATIC ONT SIZE
+$--font--size--3XL: 150px;
+$--font--size--2XL: 92px;
+$--font--size--XXL: 70px;
+$--font--size--XL: 38px;
+$--font--size--L: 28px;
+$--font--size--M: 20px;
+$--font--size--S: 16px;
+$--font--size--XS: 14px;
+$--font--size--XXS: 12px;
+
+// ------------- DYNAMIC ONT SIZE
+$--font--fluid--XXL: 12vw;
+$--font--fluid--XL: 5.5vw;
+
+
+// ------------- STYLE GLOBAL
+
+html {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+// W H I T E 
+.whiteFill {
+  fill: #fff;
+}
+
+.whiteColor {
+  color: #fff;
+}
+
+.whiteBackground {
+  background: #fff;
+}
+
+// B L A C K
+.blackFill {
+  fill: #000;
+}
+
+.blackColor {
+  color: #000;
+}
+
+.blackBackground {
+  background: #000;
+}
+
+
+// G R A Y
+.grayFill {
+  fill: #C4C4C4;
+}
+
+.grayColor {
+  color: #C4C4C4;
+}
+
+.grayBackground {
+  background: #C4C4C4;
+}
+
+// G O L D
+.goldFill {
+  fill: #c79c62;
+}
+
+.goldColor {
+  color: #c79c62;
+}
+
+.goldBackground {
+  background: #c79c62;
+}
