@@ -15,7 +15,11 @@ export default {
 
   // Global SCSS
   styleResources: {
-    scss: ["~/assets/styles/main.scss"]
+    scss: [
+      "~/assets/styles/main.scss",
+      "~/assets/styles/colors.scss",
+      "~/assets/styles/typography.scss"
+    ]
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)

@@ -1,0 +1,81 @@
+// ------------- FONTS
+@font-face {
+  font-family: "McQueenDisplay";
+  src: url("~@/assets/fonts/McQueenDisplay-BoldWeb.woff") format("woff"),
+    url("~@/assets/fonts/McQueenDisplay-BoldWeb.woff2") format("woff2");
+  weight: 800;
+}
+
+@font-face {
+  font-family: "McQueenText";
+  src: url("~@/assets/fonts/McQueenTextGX.ttf");
+}
+
+@font-face {
+  font-family: "McQueenItalic";
+  src: url("~@/assets/fonts/McQueen_text_italic.ttf");
+}
+
+@font-face {
+  font-family: "Arvana";
+  src: url("~@/assets/fonts/Arvana-Regular.woff") format("woff"),
+    url("~@/assets/fonts/Arvana-Regular.woff2") format("woff2");
+  weight: 500;
+}
+
+// ------------- MIXINS TYPOGRAPHY
+
+// -------------- PARAGRAPH
+@mixin paragraph-level-one {
+  font: {
+    family: "Arvana";
+    size: $--font--size--MM;
+    weight: 500;
+  }
+
+  color: #000;
+  line-height: 1.4;
+}
+
+@mixin paragraph-level-two {
+  font: {
+    family: "Arvana";
+    size: $--font--size--S;
+    weight: 500;
+  }
+
+  color: #000;
+  line-height: 1.5;
+}
+
+// TITLE
+
+@mixin title_one($color) {
+  font: {
+    family: "McQueenDisplay";
+    size: $--font--size--ML;
+    weight: 800;
+  }
+
+  color: $color;
+}
+
+@mixin title_two($color) {
+  font: {
+    family: "McQueenText";
+    size: $--font--size--L;
+    variation-settings: 'wght'600;
+  }
+
+  color: $color;
+}
+
+@mixin title_three($color) {
+  font: {
+    family: "Arvana";
+    size: $--font--size--L;
+    variation-settings: 'wght'700;
+  }
+
+  color: $color;
+}

@@ -21,6 +21,11 @@ export default {
       }
     },
     {
+      name: "job",
+      title: "Job",
+      type: "string"
+    },
+    {
       name: "portrait",
       title: "Portrait",
       type: "image"
