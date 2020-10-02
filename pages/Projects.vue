@@ -1,17 +1,15 @@
 <template>
   <div class="projectListCore">
     <FilterBlock class="filterBlock" />
-    <ProjectCard class="projectItem" />
-    <div class="projDivider"></div>
-    <ProjectCard class="projectItem" />
-    <div class="projDivider"></div>
-    <ProjectCard class="projectItem" />
-    <div class="projDivider"></div>
-    <ProjectCard class="projectItem" />
-    <div class="projDivider"></div>
-    <ProjectCard class="projectItem" />
-    <div class="projDivider"></div>
-    <ProjectCard class="projectItem" />
+
+    <div v-for="(project, projectIndex) in projects" :key="project._id">
+      <ProjectCard
+        class="projectItem"
+        v-bind="project"
+        :projectNumber="projectIndex + 1"
+      />
+      <div v-if="projectIndex < projects.length - 1" class="projDivider" />
+    </div>
   </div>
 </template>
 
@@ -19,6 +17,7 @@
 // Components
 import ProjectCard from "@/components/projects/ProjectListCard";
 import FilterBlock from "@/components/projects/FilterBlock";
+import { fetchProjects } from "@/api/projectApi";
 
 export default {
   layout: "SubPage",
@@ -26,6 +25,20 @@ export default {
   components: {
     ProjectCard,
     FilterBlock
+  },
+  data() {
+    return {
+      projects: [],
+      page: this.$route.query.page || 1
+    };
+  },
+  async fetch() {
+    const projects = await fetchProjects({ page: this.page });
+    console.log("projects", projects);
+    this.projects = projects;
+  },
+  fetchProjects(params) {
+    return fetchProjects(params);
   }
 };
 </script>

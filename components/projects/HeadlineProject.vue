@@ -1,9 +1,8 @@
 <template>
   <div class="headlineProjectCore">
-    <h3>#{{ projectNumber }}</h3>
     <div class="masterHead">
       <h1>
-        {{ projectName }}
+        {{ name }}
       </h1>
       <div class="mapBlock">
         <img src="../../assets/images/icn_pin_white.svg" alt="Icon Pin White" />
@@ -18,20 +17,25 @@
             src="../../assets/images/icn_pin.svg"
             alt="Icon Pin Localisation"
           />
-          <h3>{{ projectLocalisation }}</h3>
+          <h3>{{ origin.name }}</h3>
         </div>
         <div class="itemInfos">
           <img
             src="../../assets/images/icn_person.svg"
             alt="Icon Pin Localisation"
           />
-          <h3>{{ projectLead }}</h3>
+          <h3>{{ founder.fullname }}</h3>
         </div>
       </div>
 
       <div class="categoryBlock">
-        <CategoryCard class="itemCategory" />
-        <CategoryCard class="itemCategory" />
+        <CategoryCard
+          v-for="category in categories"
+          :name="category.name"
+          :slug="category.slug"
+          :key="category._id"
+          class="itemCategory"
+        />
       </div>
     </div>
   </div>
@@ -44,21 +48,18 @@ import CategoryCard from "@/components/global/CategoryCard";
 export default {
   name: "HeadlineProject",
   props: {
-    projectNumber: {
-      type: Number,
-      default: 3
+    name: {
+      type: String
     },
-    projectName: {
-      type: String,
-      default: "Ocean Cleanup"
+    origin: {
+      type: String
     },
-    projectLocalisation: {
-      type: String,
-      default: "The Netherlands"
+    founder: {
+      type: String
     },
-    projectLead: {
-      type: String,
-      default: "Boyan Slat"
+    categories: {
+      type: Array,
+      default: () => []
     }
   },
   components: {

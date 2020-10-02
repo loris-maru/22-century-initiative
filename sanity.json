@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "project": {
+    "name": "22-century-initiative"
+  },
+  "api": {
+    "projectId": "sftwaq4y",
+    "dataset": "production"
+  }
+}

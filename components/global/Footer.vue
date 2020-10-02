@@ -185,10 +185,11 @@ h3 {
   font: {
     family: "McQueenText";
     size: $--font--size--XS;
-    variation-settings: "wght" 300;
+    variation-settings: "wght" 200;
   }
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
 }
 </style>

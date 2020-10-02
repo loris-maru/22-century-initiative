@@ -1,15 +1,17 @@
 <template>
   <div class="profileCard">
     <ul>
-      <h1>Eric Tessier</h1>
-      <h2>Hydraulic Engineer</h2>
+      <h1>{{ fullname }}</h1>
+      <h2>{{ job }}</h2>
       <li>
-        <ButtonSecondaryBack :buttonLabel="btnLabel" />
+        <ButtonLevel fillColor="#000" :to="`/profile/${slug.current}`">{{
+          btnLabel
+        }}</ButtonLevel>
       </li>
     </ul>
     <div class="portraitImage">
       <img
-        src="../../assets/images/img_portrait_home.jpg"
+        :src="getImageUrl(portrait)"
         alt="portrait image"
         :class="{ enlarge: isMouseOnIMG }"
       />
@@ -19,16 +21,25 @@
 
 <script>
 import ButtonSecondaryBack from "@/components/buttons/ButtonLevel-2-Black";
+import ButtonLevel from "@/components/buttons/ButtonLevel";
+import { getImageUrl } from "@/services/sanity";
 
 export default {
-  name: "ProfileCard",
+  name: "ProfileCardSmall",
+  props: {
+    fullname: String,
+    job: String,
+    portrait: Object,
+    slug: Object
+  },
   data() {
     return {
       isMouseOnIMG: false
     };
   },
   components: {
-    ButtonSecondaryBack
+    ButtonSecondaryBack,
+    ButtonLevel
   },
   computed: {
     fillGray() {
@@ -40,6 +51,9 @@ export default {
     btnLabel() {
       return "Discover";
     }
+  },
+  methods: {
+    getImageUrl
   }
 };
 </script>

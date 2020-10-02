@@ -31,6 +31,11 @@ export default {
       type: "image"
     },
     {
+      name: "portraitOfTheWeek",
+      title: "Portrait of the week",
+      type: "boolean"
+    },
+    {
       name: "localisation",
       title: "Localisation",
       type: "reference",

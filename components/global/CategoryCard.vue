@@ -1,8 +1,8 @@
 <template>
   <div class="categoryCard">
-    <button>
-      {{ categoryTitle }}
-    </button>
+    <nuxt-link class="category-link" :to="`/categories/${slug.current}`">
+      {{ name }}
+    </nuxt-link>
   </div>
 </template>
 
@@ -10,10 +10,10 @@
 export default {
   name: "CategoryCard",
   props: {
-    categoryTitle: {
-      type: String,
-      default: "Recycling"
-    }
+    name: {
+      type: String
+    },
+    slug: Object
   }
 };
 </script>

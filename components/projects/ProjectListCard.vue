@@ -1,17 +1,14 @@
 <template>
-  <div class="projectListingCard">
+  <nuxt-link :to="`/project/${slug.current}`" class="projectListingCard">
     <!-- LINE 1 -->
     <h3># {{ projectNumber }}</h3>
 
     <!-- LINE 2 -->
     <div class="titleAndTag">
-      <h1>{{ projectName }}</h1>
+      <h1>{{ name }}</h1>
       <ul>
-        <li>
-          <CategoryCard />
-        </li>
-        <li>
-          <CategoryCard />
+        <li v-for="category in categories" :key="category._id">
+          <CategoryCard v-bind="category" />
         </li>
       </ul>
     </div>
@@ -20,14 +17,29 @@
     <div class="projectReference">
       <div class="infoBlock sectionOne">
         <img src="../../assets/images/icn_pin.svg" alt="Icon of a map pin" />
-        <h2>{{ countryTitle }}</h2>
+        <component
+          :is="origin.slug ? 'nuxt-link' : 'span'"
+          class="project-reference-link"
+          v-bind="{
+            ...(origin.slug && {
+              to: `/country/${origin.slug.current}`
+            })
+          }"
+        >
+          {{ origin.name }}
+        </component>
       </div>
       <div class="infoBlock sectionTwo">
         <img src="../../assets/images/icn_person.svg" alt="Icon of a map pin" />
-        <h2>{{ keyPerson }}</h2>
+        <nuxt-link
+          v-if="projectFounder.slug"
+          :to="`/profile/${projectFounder.slug.current}`"
+          class="project-reference-link"
+          >{{ projectFounder.fullname }}</nuxt-link
+        >
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -41,31 +53,35 @@ export default {
       type: Number,
       default: 2
     },
-    projectName: {
+    name: {
       type: String,
       default: "Ocean Cleanup"
     },
-    categoryName: {
-      type: String,
-      default: "water"
+    categories: {
+      type: Array,
+      default: () => []
     },
-    countryTitle: {
-      type: String,
-      default: "The Netherlands"
+    origin: {
+      type: String
     },
-    keyPerson: {
-      type: String,
-      default: "Boyan Slat"
-    }
+    projectFounder: {
+      type: String
+    },
+    slug: Object
   },
   components: {
     CategoryCard
+  },
+  created() {
+    console.log("in list cart", this.projectFounder);
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .projectListingCard {
+  text-decoration: none;
+  display: block;
   background: #fff;
   padding: 46px 0;
   transition: all ease-in-out 0.4s;
@@ -131,7 +147,7 @@ h1 {
   color: #000;
 }
 
-h2 {
+.project-reference-link {
   font: {
     family: "McQueenText";
     size: $--font--size--S;
@@ -139,6 +155,11 @@ h2 {
   }
   color: #000;
   letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: 0.5 all;
+  &[href]:hover {
+    text-decoration: underline;
+  }
 }
 
 h3 {

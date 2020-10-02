@@ -1,17 +1,9 @@
 <template>
   <div class="IntroductionCore">
     <div class="titleColumn">
-      <h1>{{ introductionTitle }}</h1>
+      <h1>Introduction</h1>
     </div>
-    <div class="contentText">
-      <p>
-        Sed posuere consectetur est at lobortis. Nullam id dolor id nibh
-        ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor
-        fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-        Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis
-        consectetur purus sit amet fermentum.
-      </p>
-    </div>
+    <div class="contentText"></div>
   </div>
 </template>
 
@@ -19,10 +11,11 @@
 export default {
   name: "Introduction",
   props: {
-    introductionTitle: {
-      type: String,
-      default: "Introduction"
-    }
+    content: {},
+    title: {}
+  },
+  created() {
+    console.log("INTRO", this);
   }
 };
 </script>

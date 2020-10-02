@@ -1,28 +1,14 @@
 <template>
   <div class="lexicalCore">
-    <h1>{{ masterTitle }}</h1>
+    <h1>{{ title }}</h1>
 
     <div class="lexicalBox">
       <!-- Point N°1 -->
-      <div class="lexicalItem">
-        <h3>#0{{ pointNumber }}</h3>
-        <h2>{{ pointTitle }}</h2>
+      <div v-for="(point, itemKey) in item" :key="itemKey" class="lexicalItem">
+        <h3>#{{ point.number }}</h3>
+        <h2>{{ point.title }}</h2>
         <div class="divider"></div>
-        <p>{{ pointContent }}</p>
-      </div>
-      <!-- Point N°2 -->
-      <div class="lexicalItem">
-        <h3>#0{{ pointNumber }}</h3>
-        <h2>{{ pointTitle }}</h2>
-        <div class="divider"></div>
-        <p>{{ pointContent }}</p>
-      </div>
-      <!-- Point N°3 -->
-      <div class="lexicalItem">
-        <h3>#0{{ pointNumber }}</h3>
-        <h2>{{ pointTitle }}</h2>
-        <div class="divider"></div>
-        <p>{{ pointContent }}</p>
+        <p>{{ point.content }}</p>
       </div>
     </div>
   </div>
@@ -32,23 +18,10 @@
 export default {
   name: "Lexical",
   props: {
-    masterTitle: {
-      type: String,
-      default: "Table Subtitle"
-    },
-    pointNumber: {
-      type: Number,
-      default: 1
-    },
-    pointTitle: {
-      type: String,
-      default: "Dialysis"
-    },
-    pointContent: {
-      type: String,
-      default:
-        "Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis."
-    }
+    title: {},
+    item: {},
+    number: {},
+    content: {}
   }
 };
 </script>

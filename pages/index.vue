@@ -34,7 +34,7 @@
           </div>
 
           <!-- Featured Block portrait -->
-          <ProfileCard />
+          <ProfileCardSmall v-if="featuredProfile" v-bind="featuredProfile" />
         </div>
 
         <!-- BLOCK BOTTOM -->
@@ -56,14 +56,14 @@
           <ButtonSecondaryWhite :buttonLabel="btnAllProjects" />
         </div>
 
-        <ProjectCard
-          :projectName="cardProjectName"
-          :publishedDate="dateOfPublication"
-        />
-        <ProjectCard
-          :projectName="cardProjectName"
-          :publishedDate="dateOfPublication"
-        />
+        <template v-if="featuredProjects">
+          <ProjectCard
+            v-for="project in featuredProjects"
+            :key="project._id"
+            :projectName="project.name"
+            :publishedDate="project.foundationDate"
+          />
+        </template>
       </div>
     </div>
   </div>
@@ -73,21 +73,25 @@
 // Components
 import ButtonSecondaryWhite from "@/components/buttons/ButtonLevel-2-White";
 import ButtonSecondaryBack from "@/components/buttons/ButtonLevel-2-Black";
-import ProfileCard from "@/components/cards/ProfileCard";
+import ProfileCardSmall from "@/components/cards/ProfileCardSmall";
 import ProjectCard from "@/components/projects/ProjectFeatureCard";
 import MapLink from "@/components/MapHome";
+import { fetchFeaturedProjects } from "@/api/projectApi";
+import { fetchFeaturedProfile } from "@/api/profileApi";
 
 export default {
   name: "HomePage",
   data() {
     return {
-      mouseOverMap: false
+      mouseOverMap: false,
+      featuredProjects: null,
+      featuredProfile: null
     };
   },
   components: {
     ButtonSecondaryWhite,
     ButtonSecondaryBack,
-    ProfileCard,
+    ProfileCardSmall,
     ProjectCard,
     MapLink
   },
@@ -113,6 +117,16 @@ export default {
     btnDiscover() {
       return "Discover";
     }
+  },
+  async fetch() {
+    console.log("fetching projects");
+    const [featuredProjects, featuredProfile] = await Promise.all([
+      fetchFeaturedProjects(),
+      fetchFeaturedProfile()
+    ]);
+    this.featuredProjects = featuredProjects;
+    this.featuredProfile = featuredProfile;
+    console.log("featured profile", this.featuredProfile);
   },
   methods: {
     mouseOnMap() {
@@ -273,5 +287,6 @@ h4 {
   }
   color: #000;
   margin-top: 20px;
+  line-height: 1.4;
 }
 </style>

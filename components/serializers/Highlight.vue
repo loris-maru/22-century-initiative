@@ -1,36 +1,21 @@
 <template>
   <div class="highlightCore">
     <div class="leftColumn">
-      <h1>{{ highlightTitle }}</h1>
+      <h1>{{ title }}</h1>
       <ul>
-        <li>
-          <img src="../../assets/images/icn_pin.svg" alt="Image icon" />
-          {{ itemOne }}
-        </li>
-        <li>
-          <img src="../../assets/images/icn_pin.svg" alt="Image icon" />
-          {{ itemOne }}
+        <li v-for="(item, itemKey) in details" :key="itemKey">
+          <img src="iconDetail" alt="Category of Details" />
+          <span class="detail-name">{{ item.name }}</span>
         </li>
       </ul>
       <p>
-        Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus
-        porttitor. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-        Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit
-        libero, a pharetra augue. Curabitur blandit tempus porttitor. Cras justo
-        odio, dapibus ac facilisis in, egestas eget quam.<br />
-        Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit
-        libero, a pharetra augue. Curabitur blandit tempus porttitor. Cras justo
-        odio, dapibus ac facilisis in, egestas eget quam. Cras mattis
-        consectetur purus sit amet fermentum.
+        {{ content }}
       </p>
     </div>
 
     <div class="rightColumn">
       <div class="portraitZone">
-        <img
-          src="~@/assets/images/img_placeholder_portrait.jpg"
-          alt="Portrait Image"
-        />
+        <img :src="image" alt="Portrait Image" />
         <h2>{{ imageCaption }}</h2>
         <ButtonMore :buttonLabel="buttonLabel" class="buttonBox" />
       </div>
@@ -48,18 +33,11 @@ export default {
     ButtonMore
   },
   props: {
-    highlightTitle: {
-      type: String,
-      default: "Albert Kohtalhen"
-    },
-    itemOne: {
-      type: String,
-      default: "The Netherlands"
-    },
-    imageCaption: {
-      type: String,
-      default: "Fermentum Cras Cursus Vehicula"
-    }
+    title: {},
+    imageCaption: {},
+    content: {},
+    image: {},
+    details: {}
   },
   computed: {
     buttonLabel() {
